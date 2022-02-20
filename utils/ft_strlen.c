@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_err.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 16:21:34 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/16 14:27:06 by mprigent         ###   ########.fr       */
+/*   Created: 2022/02/16 14:29:32 by mprigent          #+#    #+#             */
+/*   Updated: 2022/02/16 14:31:45 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	ft_print_err(char *str)
+int ft_strlen(char *str)
 {
-	write(1, "\033[31mError\033[00m\n", 17);
-	write (1, str, ft_strlen(str));
-	write(1, "\n", 1);
-	exit(0);
+	int i = 0;
+
+	if (!str)
+		return 0;
+	while (str[i])
+		i++;
+	return (i);
 }

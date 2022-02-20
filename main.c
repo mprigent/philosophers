@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_err.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 16:21:34 by mprigent          #+#    #+#             */
+/*   Created: 2022/02/13 16:52:06 by mprigent          #+#    #+#             */
 /*   Updated: 2022/02/16 14:27:06 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "philo.h"
 
-void	ft_print_err(char *str)
+int	main(int argc, char *argv[])
 {
-	write(1, "\033[31mError\033[00m\n", 17);
-	write (1, str, ft_strlen(str));
-	write(1, "\n", 1);
-	exit(0);
+	t_conf	conf;
+
+	memset(&conf, 0, sizeof(conf));
+	if (argc != 5 && argc != 6)
+		ft_print_err("wrong arguments");
+	if (ft_init(&conf, argc, argv))
+		return (1);
+	ft_create_philo(&conf);
+	ft_join(&conf);
+	return (0);
 }
