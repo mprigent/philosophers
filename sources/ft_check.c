@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:31:59 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 17:18:25 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/20 18:43:43 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ void	*ft_check_death(void *argv)
 		gettimeofday(&instant, NULL);
 		if (ms >= philo->conf->time_to_die && philo->conf->finish == 0)
 		{
-			printf("%lld\t%d\t %s\n", \
-				ft_time(instant) - ft_time(philo->conf->create), \
-				philo->n + 1, "died");
+			printf("%lld\t%d\t %s\n", ft_time(instant) - ft_time(philo->conf->create), philo->n + 1, "died");
 			philo->conf->finish = 1;
 		}
 		pthread_mutex_unlock(&philo->conf->mutex_final);

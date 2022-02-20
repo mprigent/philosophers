@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:51:55 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 17:18:10 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/20 18:42:33 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	ft_eating(t_philo *philo)
 
 	pthread_mutex_lock(&philo->check_mutex);
 	gettimeofday(&philo->last_eat, NULL);
-	ms = ft_time(philo->last_eat) - \
-		ft_time(philo->conf->create);
+	ms = ft_time(philo->last_eat) - ft_time(philo->conf->create);
 	pthread_mutex_lock(&philo->conf->mutex_final);
 	if (!philo->conf->finish)
 		printf("%lld\t%d\t %s\n", ms, philo->n + 1, "is eating");
@@ -62,9 +61,9 @@ void	*ft_actions(void *argv)
 	while (!philo->conf->finish)
 	{
 		ft_forks(philo);
-		ft_thinking(philo);
-		ft_sleeping(philo);
 		ft_eating(philo);
+		ft_sleeping(philo);
+		ft_thinking(philo);
 	}
 	return (NULL);
 }

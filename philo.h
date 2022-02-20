@@ -6,19 +6,19 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 15:55:08 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 16:22:12 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/20 18:45:17 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <unistd.h>
+#include <unistd.h>
 #include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
-# include <sys/time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <sys/time.h>
 
 typedef struct s_philo
 {
