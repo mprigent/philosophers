@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:31:59 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 20:53:06 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:42:54 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,29 @@ void	*ft_check_death(void *argv)
 		gettimeofday(&instant, NULL);
 		if (ms >= philo->conf->time_to_die && philo->conf->finish == 0)
 		{
-			printf("%lld\t%d\t %s\n", ft_time(instant) - ft_time(philo->conf->create), philo->n + 1, "died");
+			printf("%lld\t%d\t %s\n", ft_time(instant)
+				- ft_time(philo->conf->create), philo->n + 1, "died");
 			philo->conf->finish = 1;
 		}
 		pthread_mutex_unlock(&philo->conf->mutex_final);
 		pthread_mutex_unlock(&philo->check_mutex);
 	}
 	return (NULL);
+}
+
+void	ft_join(t_conf *conf)
+{
+	int		i;
+
+	i = 0;
+	while (i < conf->nb_philo)
+	{
+		pthread_join(conf->philo[i].thread, NULL);
+		pthread_mutex_destroy(&conf->philo[i++].check_mutex);
+	}
+	free(conf->philo);
+	i = 0;
+	while (i < conf->nb_philo)
+		pthread_mutex_destroy(&conf->forks[i++]);
+	free(conf->forks);
 }
