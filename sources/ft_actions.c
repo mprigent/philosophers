@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:51:55 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 18:42:33 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:39:27 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_thinking(t_philo *philo)
 void	ft_sleeping(t_philo *philo)
 {
 	ft_print_msg(philo, "is sleeping");
-	usleep(philo->conf->time_to_sleep * 1000);
+	ft_meditate(philo->conf->time_to_sleep);
 }
 
 void	ft_eating(t_philo *philo)
@@ -45,7 +45,7 @@ void	ft_eating(t_philo *philo)
 	if (philo->nb_eat == philo->conf->must_eat)
 		philo->conf->nb_eat_final += 1;
 	pthread_mutex_unlock(&philo->conf->mutex_final);
-	usleep(philo->conf->time_to_eat * 1000);
+	ft_meditate(philo->conf->time_to_eat);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(&philo->check_mutex);
@@ -57,7 +57,7 @@ void	*ft_actions(void *argv)
 
 	philo = argv;
 	if (philo->n % 2 == 0)
-		usleep(philo->conf->time_to_eat * 1000);
+		ft_meditate(philo->conf->time_to_eat);
 	while (!philo->conf->finish)
 	{
 		ft_forks(philo);

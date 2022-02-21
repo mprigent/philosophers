@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 15:55:08 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 18:45:17 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:34:18 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ void	*ft_check_death(void *argv);
 void	ft_create_philo(t_conf *conf);
 int	ft_malloc(void *dst, size_t size);
 void	ft_join(t_conf *conf);
+uint64_t	ft_get_time(void);
+void	ft_meditate(int time_to_meditate);
 
 #endif

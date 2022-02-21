@@ -6,7 +6,7 @@
 #    By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 17:13:37 by mprigent          #+#    #+#              #
-#    Updated: 2022/02/20 16:41:28 by mprigent         ###   ########.fr        #
+#    Updated: 2022/02/21 13:37:49 by mprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ SRCS        :=      main.c \
                     parsing/ft_parse.c \
                     parsing/ft_print_err.c \
 					sources/ft_actions.c \
-					sources/ft_check.c
-						  
+					sources/ft_check.c \
+					sources/ft_time.c
                           
 OBJS        := $(SRCS:.c=.o)
 

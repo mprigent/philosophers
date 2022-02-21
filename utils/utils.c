@@ -6,20 +6,11 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:47:07 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/20 17:18:41 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:32:51 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-long long	ft_time(struct timeval instant)
-{
-	long long		ms;
-
-	ms = instant.tv_sec * 1000;
-	ms += instant.tv_usec / 1000;
-	return (ms);
-}
 
 void	ft_print_msg(t_philo *philo, char *str)
 {
