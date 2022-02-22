@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:51:55 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/21 17:03:32 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:56:36 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ void	ft_eating(t_philo *philo)
 	gettimeofday(&philo->last_eat, NULL);
 	ms = ft_time(philo->last_eat) - ft_time(philo->conf->create);
 	pthread_mutex_lock(&philo->conf->mutex_final);
+	pthread_mutex_lock(&philo->conf->mutex_finish);
+	//mutex_lock(*);
 	if (!philo->conf->finish)
 		printf("%lld\t%d\t %s\n", ms, philo->n + 1, "is eating");
+	//mutex_unlock(*);
+	pthread_mutex_unlock(&philo->conf->mutex_finish);	
 	philo->nb_eat += 1;
 	if (philo->nb_eat == philo->conf->must_eat)
 		philo->conf->nb_eat_final += 1;
@@ -58,12 +62,20 @@ void	*ft_actions(void *argv)
 	philo = argv;
 	if (philo->n % 2 == 0)
 		ft_meditate(philo->conf->time_to_eat);
+	pthread_mutex_lock(&philo->conf->mutex_finish);
+	//mutex_lock(*);
 	while (!philo->conf->finish)
 	{
+		pthread_mutex_unlock(&philo->conf->mutex_finish);
+		//mutex_unlock(*);
 		ft_forks(philo);
 		ft_eating(philo);
 		ft_sleeping(philo);
 		ft_thinking(philo);
+		pthread_mutex_lock(&philo->conf->mutex_finish);
+		//mutex_lock(*);
 	}
+	pthread_mutex_unlock(&philo->conf->mutex_finish);
+	//mutex_unlock(*);
 	return (NULL);
 }

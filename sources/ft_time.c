@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:32:09 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/21 19:32:55 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:03:58 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ uint64_t	ft_get_time(void)
 	static struct timeval	tv;
 	static int				begining_time;
 	uint64_t				ret;
-
+	
 	if (!begining_time)
 	{
 		gettimeofday(&tv, NULL);

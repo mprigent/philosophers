@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 15:55:08 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/21 19:41:27 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:54:28 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_conf
 	int				must_eat;
 	int				nb_eat_final;
 	int				finish;
+	pthread_mutex_t mutex_finish;
 	pthread_mutex_t	mutex_final;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;

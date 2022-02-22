@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:31:59 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/22 14:34:19 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:58:14 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,40 @@ void	*ft_check_death(void *argv)
 	long long		ms;
 
 	philo = argv;
+	pthread_mutex_lock(&philo->conf->mutex_finish);
+	//mutex_lock(*);
 	while (!philo->conf->finish)
 	{
+		pthread_mutex_unlock(&philo->conf->mutex_finish);
+		//mutex_unlock(*);
 		pthread_mutex_lock(&philo->check_mutex);
 		pthread_mutex_lock(&philo->conf->mutex_final);
 		gettimeofday(&instant, NULL);
 		ms = ft_time(instant) - ft_time(philo->last_eat);
 		gettimeofday(&instant, NULL);
+		pthread_mutex_lock(&philo->conf->mutex_finish);
+		//mutex_lock(*);
 		if (ms >= philo->conf->time_to_die && philo->conf->finish == 0)
 		{
+			pthread_mutex_unlock(&philo->conf->mutex_finish);
+			//mutex_unlock(*);
 			printf("%lld\t%d\t %s\n", ft_time(instant)
 				- ft_time(philo->conf->create), philo->n + 1, "\033[0;31mdied...\033[m");
+			pthread_mutex_lock(&philo->conf->mutex_finish);
+			//mutex_lock(*);
 			philo->conf->finish = 1;
+			pthread_mutex_unlock(&philo->conf->mutex_finish);
+			//mutex_unlock(*);
 		}
+		pthread_mutex_unlock(&philo->conf->mutex_finish);
+		//mutex_unlock(*);
 		pthread_mutex_unlock(&philo->conf->mutex_final);
 		pthread_mutex_unlock(&philo->check_mutex);
+		pthread_mutex_lock(&philo->conf->mutex_finish);
+		//mutex_lock(*);
 	}
+	pthread_mutex_unlock(&philo->conf->mutex_finish);
+	//mutex_unlock(*);
 	return (NULL);
 }
 
