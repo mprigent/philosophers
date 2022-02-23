@@ -60,7 +60,7 @@ void	*ft_actions(void *argv)
 		return (one_philo(philo));
 	if (philo->n % 2 == 0)
 		ft_meditate(philo->conf->time_to_eat, philo);
-	pthread_mutex_lock(&philo->conf->acces_finish);	
+	pthread_mutex_lock(&philo->conf->acces_finish);
 	while (!philo->conf->finish)
 	{
 		pthread_mutex_unlock(&philo->conf->acces_finish);

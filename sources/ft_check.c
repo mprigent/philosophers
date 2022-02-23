@@ -51,22 +51,32 @@ void	*ft_check_death(void *argv)
 		gettimeofday(&instant, NULL);
 		pthread_mutex_lock(&philo->conf->acces_finish);
 		if (ms >= philo->conf->time_to_die && philo->conf->finish == 0)
-		{
-			pthread_mutex_unlock(&philo->conf->acces_finish);
-			printf("%lld\t%d\t %s\n", ft_time(instant)
-				- ft_time(philo->conf->create), philo->n + 1,
-				"\033[0;31mdied...\033[m");
-			pthread_mutex_lock(&philo->conf->acces_finish);
-			philo->conf->finish = 1;
-			pthread_mutex_unlock(&philo->conf->acces_finish);
-		}
+			ft_check_death2(philo, 0, instant);
+		ft_check_death2(philo, 1, instant);
+	}
+	pthread_mutex_unlock(&philo->conf->acces_finish);
+	return (NULL);
+}
+
+void	ft_check_death2(t_philo *philo, int i, struct timeval instant)
+{
+	if (!i)
+	{
+		pthread_mutex_unlock(&philo->conf->acces_finish);
+		printf("%lld\t%d\t %s\n", ft_time(instant)
+			- ft_time(philo->conf->create), philo->n + 1,
+			"\033[0;31mdied...\033[m");
+		pthread_mutex_lock(&philo->conf->acces_finish);
+		philo->conf->finish = 1;
+		pthread_mutex_unlock(&philo->conf->acces_finish);
+	}
+	else
+	{
 		pthread_mutex_unlock(&philo->conf->acces_finish);
 		pthread_mutex_unlock(&philo->conf->mutex_final);
 		pthread_mutex_unlock(&philo->check_mutex);
 		pthread_mutex_lock(&philo->conf->acces_finish);
-	}
-	pthread_mutex_unlock(&philo->conf->acces_finish);
-	return (NULL);
+	}	
 }
 
 void	*one_philo(t_philo	*philo)
@@ -80,7 +90,6 @@ void	*one_philo(t_philo	*philo)
 	}
 	pthread_mutex_unlock(&philo->conf->acces_finish);
 	return (0);
-	
 }
 
 void	ft_join(t_conf *conf)
@@ -98,4 +107,6 @@ void	ft_join(t_conf *conf)
 	while (i < conf->nb_philo)
 		pthread_mutex_destroy(&conf->forks[i++]);
 	free(conf->forks);
+	pthread_mutex_destroy(&conf->acces_finish);
+	pthread_mutex_destroy(&conf->acces_time);
 }

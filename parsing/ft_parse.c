@@ -27,9 +27,9 @@ int	ft_check_args(t_conf *conf, int argc)
 	if (argc == 6 && conf->must_eat <= 0)
 		ft_print_err("wrong number of \
 		time each philosopher must eat: can't be 0 or less.");
-	if (conf->nb_philo < 0)
+	if (conf->nb_philo <= 0)
 		ft_print_err("wrong number of philosophers: \
-		you can't use less then 0.");
+		you can't use less then 1.");
 	if (conf->nb_philo > 250)
 		ft_print_err("wrong number of philosophers: \
 		you can't use more then 250.");
@@ -94,6 +94,24 @@ void	ft_create_philo(t_conf *conf)
 
 int	ft_init(t_conf *conf, int argc, char **argv)
 {
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (ft_isdigit(argv[i][j]))
+			{
+				ft_print_err("only digits are required");
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
 	ft_parse(conf, argc, argv);
 	if (ft_check_args(conf, argc))
 		return (1);

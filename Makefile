@@ -6,7 +6,7 @@
 #    By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 17:13:37 by mprigent          #+#    #+#              #
-#    Updated: 2022/02/23 15:53:31 by mprigent         ###   ########.fr        #
+#    Updated: 2022/02/23 16:26:49 by mprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAME        := philo
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror -pthread #-fsanitize=address
+FLAGS    := -Wall -Wextra -Werror -pthread
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -70,5 +70,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
-
-

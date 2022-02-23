@@ -42,8 +42,8 @@ typedef struct s_conf
 	int				nb_eat_final;
 	int				finish;
 	pthread_mutex_t	mutex_final;
-	pthread_mutex_t acces_finish;
-	pthread_mutex_t acces_time;
+	pthread_mutex_t	acces_finish;
+	pthread_mutex_t	acces_time;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
 	struct timeval	create;
@@ -71,5 +71,7 @@ void		ft_join(t_conf *conf);
 uint64_t	ft_get_time(t_philo *philo);
 void		ft_meditate(int time_to_meditate, t_philo *philo);
 void		*one_philo(t_philo	*philo);
+void		ft_check_death2(t_philo *philo, int i, struct timeval instant);
+int			ft_isdigit(int c);
 
 #endif

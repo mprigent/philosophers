@@ -26,6 +26,7 @@ uint64_t	ft_get_time(t_philo *philo)
 	static struct timeval	tv;
 	static int				begining_time;
 	uint64_t				ret;
+
 	pthread_mutex_lock(&philo->conf->acces_time);
 	if (!begining_time)
 	{
