@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:02:37 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/22 14:59:33 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:35:55 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	ft_init_philo(t_conf *conf)
 	int	i;
 
 	pthread_mutex_init(&conf->mutex_final, NULL);
-	pthread_mutex_init(&conf->mutex_finish, NULL);
+	pthread_mutex_init(&conf->acces_finish, NULL);
+	pthread_mutex_init(&conf->acces_time, NULL);
 	if (ft_malloc(&conf->philo, sizeof(t_philo) * conf->nb_philo)
 		|| ft_malloc(&conf->forks, sizeof(pthread_mutex_t) * conf->nb_philo))
 		ft_print_err("malloc failed");

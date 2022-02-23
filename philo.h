@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 15:55:08 by mprigent          #+#    #+#             */
-/*   Updated: 2022/02/22 14:54:28 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:36:48 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ typedef struct s_conf
 	int				must_eat;
 	int				nb_eat_final;
 	int				finish;
-	pthread_mutex_t mutex_finish;
 	pthread_mutex_t	mutex_final;
+	pthread_mutex_t acces_finish;
+	pthread_mutex_t acces_time;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
 	struct timeval	create;
@@ -67,7 +68,8 @@ void		*ft_check_death(void *argv);
 void		ft_create_philo(t_conf *conf);
 int			ft_malloc(void *dst, size_t size);
 void		ft_join(t_conf *conf);
-uint64_t	ft_get_time(void);
-void		ft_meditate(int time_to_meditate);
+uint64_t	ft_get_time(t_philo *philo);
+void		ft_meditate(int time_to_meditate, t_philo *philo);
+void		*one_philo(t_philo	*philo);
 
 #endif

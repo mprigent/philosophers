@@ -6,7 +6,7 @@
 #    By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 17:13:37 by mprigent          #+#    #+#              #
-#    Updated: 2022/02/22 14:47:47 by mprigent         ###   ########.fr        #
+#    Updated: 2022/02/23 15:53:31 by mprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAME        := philo
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror -pthread -fsanitize=thread
+FLAGS    := -Wall -Wextra -Werror -pthread #-fsanitize=address
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
